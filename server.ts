@@ -10,6 +10,8 @@ import { savetreatment } from "./save-course.route";
 import { createTreatment } from "./create-course.route";
 import { deleteTreatment } from "./delete-course.route";
 
+const port = process.env.PORT || 9000;
+
 const bodyParser = require("body-parser");
 
 const app: Application = express();
@@ -34,7 +36,7 @@ app.route("/api/treatments/:treatmentCategory").get(getTreatmentByCategory); //o
 
 // app.route("/api/lessons").get(searchLessons);
 
-const httpServer: any = app.listen(9000, () => {
+const httpServer: any = app.listen(port, () => {
   console.log(
     "HTTP REST API Server running at http://localhost:" +
       httpServer.address().port
