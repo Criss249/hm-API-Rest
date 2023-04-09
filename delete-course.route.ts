@@ -1,22 +1,16 @@
-import {Request, Response} from 'express';
-import {COURSES} from "./db-data";
+import { Request, Response } from "express";
+import { TREATMENTS } from "./db-data";
 
+export function deleteTreatment(req: Request, res: Response) {
+  console.log("Deleting treatment ...");
 
-export function deleteCourse(req: Request, res: Response) {
+  const id = req.params["id"];
 
-    console.log("Deleting course ...");
+  const course = TREATMENTS[id];
 
-    const id = req.params["id"];
+  delete TREATMENTS[id];
 
-    const course = COURSES[id];
-
-    delete COURSES[id];
-
-    setTimeout(() => {
-
-      res.status(200).json({id});
-
-    }, 2000);
-
+  setTimeout(() => {
+    res.status(200).json({ id });
+  }, 2000);
 }
-

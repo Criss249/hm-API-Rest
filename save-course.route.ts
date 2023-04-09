@@ -1,24 +1,18 @@
-import {Request, Response} from 'express';
-import {COURSES} from "./db-data";
+import { Request, Response } from "express";
+import { TREATMENTS } from "./db-data";
 
+export function savetreatment(req: Request, res: Response) {
+  console.log("Saving course ...");
 
-export function saveCourse(req: Request, res: Response) {
+  const id = req.params["id"],
+    changes = req.body;
 
-    console.log("Saving course ...");
+  TREATMENTS[id] = {
+    ...TREATMENTS[id],
+    ...changes,
+  };
 
-    const id = req.params["id"],
-        changes = req.body;
-
-    COURSES[id] = {
-        ...COURSES[id],
-        ...changes
-    };
-
-    setTimeout(() => {
-
-      res.status(200).json(COURSES[id]);
-
-    }, 2000);
-
+  setTimeout(() => {
+    res.status(200).json(TREATMENTS[id]);
+  }, 2000);
 }
-
